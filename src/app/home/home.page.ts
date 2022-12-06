@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { createWorker } from 'tesseract.js';
-import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
-const { Camera } = Plugins;
+//import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+//const { Camera } = Plugins;
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ const { Camera } = Plugins;
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  worker: Tesseract.Worker;
+  worker!: Tesseract.Worker;
   workerReady = false;
   image = 'https://tesseract.projectnaptha.com/img/eng_bw.png';
   ocrResult = '';
@@ -20,7 +21,7 @@ export class HomePage {
   }
 
   async loadWorker() {
-    this.worker = createWorker({
+    this.worker = await createWorker({
       logger: progress => {
        if (progress.status == 'recognizing text') {
         this.captureProgress = parseInt('' + progress.progress * 100);
@@ -41,7 +42,7 @@ export class HomePage {
       source: CameraSource.Camera
     });
 
-    this.image = image.dataUrl;
+    this.image = image.dataUrl as string;
   }
 
   async recognizeImage() {
