@@ -12,7 +12,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 export class HomePage {
   worker!: Tesseract.Worker;
   workerReady = false;
-  image = 'https://tesseract.projectnaptha.com/img/eng_bw.png';
+  image: Tesseract.ImageLike = 'https://tesseract.projectnaptha.com/img/eng_bw.png'; //image: Tesseract.ImageLike from Henning's code
   ocrResult = '';
   captureProgress = 0;
 
@@ -42,7 +42,7 @@ export class HomePage {
       source: CameraSource.Camera
     });
 
-    this.image = image.dataUrl as string;
+    this.image = image.dataUrl as Tesseract.ImageLike;
   }
 
   async recognizeImage() {
