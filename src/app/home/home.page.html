@@ -9,8 +9,8 @@
 <ion-content class="ion-padding">
   <ion-img [src]="image"></ion-img>
 
-  <ion-button expand="full" (click)="captureImage()">Capture Image</ion-button>
-  <ion-button expand="full" (click)="recognizeImage()" [disabled]="!workerReady">Start OCR</ion-button>
+  <ion-button expand="full" (click)="captureImage()" shape="round">Capture Image</ion-button>
+  <ion-button expand="full" (click)="recognizeImage()" [disabled]="!workerReady" shape="round">Start OCR</ion-button>
 
   <ion-card *ngIf="workerReady && captureProgress > 0">
     <ion-card-header>
